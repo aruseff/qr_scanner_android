@@ -1,0 +1,97 @@
+package training.ruseff.com.karateqrscanner;
+
+import android.graphics.Color;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+
+import training.ruseff.com.karateqrscanner.adapters.UsersListAdapter;
+import training.ruseff.com.karateqrscanner.http.HttpCalls;
+import training.ruseff.com.karateqrscanner.http.JsonConverter;
+import training.ruseff.com.karateqrscanner.models.User;
+
+public class AllUsersActivity extends AppCompatActivity {
+
+    ListView usersListView;
+    TextView messageTextView;
+    RelativeLayout progressBar;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_all_users);
+        initFields();
+        new HttpAsync().execute();
+    }
+
+    private void initFields() {
+        usersListView = findViewById(R.id.usersListView);
+        messageTextView = findViewById(R.id.messageTextView);
+        progressBar = findViewById(R.id.progressBar);
+    }
+
+    private void showErrorMessage(String msg, boolean changeColor) {
+        messageTextView.setText(msg);
+        if(changeColor) {
+            messageTextView.setTextColor(Color.RED);
+        }
+        usersListView.setVisibility(View.GONE);
+        messageTextView.setVisibility(View.VISIBLE);
+    }
+
+    private void showListView(ArrayList<User> users) {
+        if(users == null || users.isEmpty()) {
+            showErrorMessage("Няма намерени потребители", false);
+        } else {
+            ArrayAdapter<User> activeUsersAdapter = new UsersListAdapter(users, AllUsersActivity.this);
+            usersListView.setAdapter(activeUsersAdapter);
+            messageTextView.setVisibility(View.GONE);
+            usersListView.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void blockScreen() {
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    private void unblockScreen() {
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        progressBar.setVisibility(View.GONE);
+    }
+
+    private class HttpAsync extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... param) {
+            HttpCalls http = new HttpCalls();
+            return http.getAllUsers();
+        }
+
+        @Override
+        protected void onPreExecute() {
+            blockScreen();
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            unblockScreen();
+            if(result.equals("ERROR")) {
+                showErrorMessage("Възникна проблем. Моля опитайте отново", true);
+            } else {
+                JsonConverter json = new JsonConverter();
+                ArrayList<User> users = json.fromStringToListOfUsers(result);
+                showListView(users);
+            }
+        }
+    }
+}

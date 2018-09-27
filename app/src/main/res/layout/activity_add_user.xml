@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image"
+    android:gravity="center">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/menuBackground"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="Регистрация на потребител"
+            android:textColor="@color/textColor"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/headerDelim"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/header"
+            android:layout_marginEnd="25dp"
+            android:layout_marginStart="25dp"
+            android:background="#2BFFFFFF" />
+
+        <LinearLayout
+            android:id="@+id/nameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/headerDelim"
+            android:layout_marginEnd="25dp"
+            android:layout_marginStart="25dp"
+            android:padding="15dp"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|start"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp"
+                android:text="Име"
+                android:textColor="@color/textColor"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/nameEditText"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textColor="@color/textColor"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/nameDelim"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/nameLayout"
+            android:layout_marginEnd="35dp"
+            android:layout_marginStart="35dp"
+            android:background="#2BFFFFFF" />
+
+        <LinearLayout
+            android:id="@+id/idLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nameDelim"
+            android:layout_marginEnd="25dp"
+            android:layout_marginStart="25dp"
+            android:padding="20dp"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|start"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp"
+                android:text="ID"
+                android:textColor="@color/textColor"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/idEditText"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textColor="@color/textColor"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/idDelim"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/idLayout"
+            android:layout_marginEnd="50dp"
+            android:layout_marginStart="50dp"
+            android:background="#2BFFFFFF" />
+
+        <Button
+            android:id="@+id/registerButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idDelim"
+            android:layout_margin="20dp"
+            android:text="Регистрация"
+            android:textColor="@color/textColor"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/messageTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_below="@+id/registerButton"
+            android:textColor="#FF0000"
+            android:visibility="gone"
+            android:textSize="18sp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="#68000000"
+        android:gravity="center">
+
+        <com.github.ybq.android.spinkit.SpinKitView xmlns:app="http://schemas.android.com/apk/res-auto"
+            style="@style/SpinKitView.Large.Circle"
+            android:id="@+id/spinkit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            app:SpinKit_Color="#FFFFFF" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Моля изчакайте..."
+            android:layout_below="@+id/spinkit"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@color/textColor"
+            android:textSize="20sp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

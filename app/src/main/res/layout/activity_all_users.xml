@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:text="QR Scanner"
+        android:gravity="center"
+        android:textColor="@color/textColor"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:background="#E0616161" />
+
+    <View
+        android:id="@+id/appBarDelim"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/appBar"
+        android:background="#CA2B2026" />
+
+    <TextView
+        android:id="@+id/messageTextView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="top|center_horizontal"
+        android:layout_below="@+id/appBarDelim"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        android:textColor="#C4C4C4"
+        android:padding="10dp"
+        android:visibility="gone"
+        android:background="@color/menuBackground"/>
+
+    <ListView
+        android:id="@+id/usersListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/appBarDelim"
+        android:background="@color/menuBackground"/>
+
+    <RelativeLayout
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="#68000000"
+        android:gravity="center">
+
+        <com.github.ybq.android.spinkit.SpinKitView xmlns:app="http://schemas.android.com/apk/res-auto"
+            style="@style/SpinKitView.Large.Circle"
+            android:id="@+id/spinkit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            app:SpinKit_Color="#FFFFFF" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Зареждане на данни..."
+            android:layout_below="@+id/spinkit"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@color/textColor"
+            android:textSize="20sp"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
