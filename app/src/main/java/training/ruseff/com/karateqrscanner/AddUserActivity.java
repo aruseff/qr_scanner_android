@@ -2,10 +2,11 @@ package training.ruseff.com.karateqrscanner;
 
 import android.graphics.Color;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -39,20 +40,32 @@ public class AddUserActivity extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                hideKeyboard();
                 messageTextView.setVisibility(View.GONE);
                 String externalId = idEditText.getText().toString();
                 String name = nameEditText.getText().toString();
-                if(Utils.isNullOrEmpty(externalId) || Utils.isNullOrEmpty(name)) {
-                    fieldValidationError();
-                } else {
+                if (validateForm(name, externalId)) {
                     new HttpAsync().execute(externalId, name);
                 }
             }
         });
     }
 
-    private void fieldValidationError() {
-        showErrorMessage("Моля попълнете полетата");
+    private boolean validateForm(String username, String id) {
+        boolean toContinue = true;
+        if (Utils.isNullOrEmpty(username)) {
+            nameEditText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.warning_icon, 0);
+            toContinue = false;
+        } else {
+            nameEditText.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+        }
+        if (Utils.isNullOrEmpty(id)) {
+            idEditText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.warning_icon, 0);
+            toContinue = false;
+        } else {
+            idEditText.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+        }
+        return toContinue;
     }
 
     private void blockScreen() {
@@ -78,6 +91,15 @@ public class AddUserActivity extends AppCompatActivity {
         messageTextView.setVisibility(View.VISIBLE);
     }
 
+    public void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) this.getSystemService(LoginActivity.INPUT_METHOD_SERVICE);
+        View view = this.getCurrentFocus();
+        if (view == null) {
+            view = new View(this);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
     private class HttpAsync extends AsyncTask<String, Void, String> {
 
         @Override
@@ -94,7 +116,9 @@ public class AddUserActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             unblockScreen();
-            if(result.equals("OK")) {
+            if (result.equals("OK")) {
+                nameEditText.setText("");
+                idEditText.setText("");
                 showSuccessMessage("Успешно добавен потребител");
             } else {
                 showErrorMessage("Възникна проблем. Моля опитайте отново");

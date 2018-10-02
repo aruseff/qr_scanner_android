@@ -7,7 +7,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
         android:background="@color/menuBackground"
         android:gravity="center">
 
@@ -16,12 +15,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="-30dp"
+            android:layout_marginBottom="80dp"
             android:fontFamily="cursive"
             android:gravity="center"
             android:padding="30dp"
-            android:text="QR Scanner"
+            android:text="@string/app_header_name"
             android:textColor="@color/textColor"
             android:textSize="35sp" />
 
@@ -30,8 +28,11 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_below="@+id/header"
-            android:layout_margin="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
             android:hint="Потребителско име"
+            android:padding="7dp"
             android:textColor="@color/textColor"
             android:textColorHint="@color/textColor" />
 
@@ -40,43 +41,25 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_below="@+id/username"
-            android:layout_marginBottom="20dp"
-            android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
             android:hint="Парола"
+            android:inputType="textPassword"
+            android:padding="7dp"
             android:textColor="@color/textColor"
             android:textColorHint="@color/textColor" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/password"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
-            android:weightSum="10"
-            android:orientation="horizontal">
-
             <Button
                 android:id="@+id/enter"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="8"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
                 android:layout_below="@+id/password"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:background="#2E1B35"
-                android:text="Вход"
+                android:text="Влез"
                 android:textColor="@color/textColor" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:background="#86508C"
-                android:foreground="@android:drawable/ic_menu_rotate"
-                android:foregroundGravity="center"
-                />
-
-        </LinearLayout>
-
 
     </RelativeLayout>
 

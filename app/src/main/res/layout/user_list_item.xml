@@ -8,7 +8,7 @@
         android:id="@+id/avatar"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:src="@drawable/menu_users_icon"
+        android:src="@drawable/all_users_user_avatar"
         android:padding="5dp" />
 
     <LinearLayout android:layout_width="wrap_content"

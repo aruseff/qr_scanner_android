@@ -56,7 +56,7 @@ public class PaymentActivity extends AppCompatActivity {
         user = getIntent().getParcelableExtra("user");
         checkForNullUser(user);
         initializeFields();
-        usernameTextView.setText(user.getName() + " : " + user.getInternalId());
+        usernameTextView.setText(user.getName() + " : " + user.getExternalId());
         warningMessageTextView.setVisibility(View.GONE);
 
         onYearChanged(Utils.getYearFromDate(new Date()));
@@ -141,12 +141,12 @@ public class PaymentActivity extends AppCompatActivity {
 
     private void deactivateMonth(int month) {
         cardMonths[month].getCheckBox().setEnabled(false);
-        cardMonths[month].getLayout().setBackground(ContextCompat.getDrawable(PaymentActivity.this, R.drawable.month_cell_border_locked));
+        cardMonths[month].getLayout().setBackground(ContextCompat.getDrawable(PaymentActivity.this, R.drawable.payment_month_cell_border_locked));
     }
 
     private void activateMonth(int month) {
         cardMonths[month].getCheckBox().setEnabled(true);
-        cardMonths[month].getLayout().setBackground(ContextCompat.getDrawable(PaymentActivity.this, R.drawable.month_cell_border));
+        cardMonths[month].getLayout().setBackground(ContextCompat.getDrawable(PaymentActivity.this, R.drawable.payment_month_cell_border));
     }
 
     private void initializeFields() {

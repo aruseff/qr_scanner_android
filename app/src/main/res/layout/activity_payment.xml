@@ -87,7 +87,7 @@
             android:layout_below="@+id/paymentCard"
             android:layout_marginTop="19dp"
             android:drawablePadding="10dp"
-            android:drawableStart="@drawable/alert"
+            android:drawableStart="@drawable/warning_icon"
             android:gravity="start|center_vertical"
             android:paddingStart="20dp"
             android:text="Внимание..."

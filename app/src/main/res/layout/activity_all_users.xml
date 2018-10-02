@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="top|center_horizontal"
-        android:layout_below="@+id/appBarDelim"
+        android:layout_below="@+id/searchBar"
         android:textSize="14sp"
         android:textStyle="italic"
         android:textColor="#C4C4C4"
@@ -42,14 +42,38 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/appBarDelim"
+        android:paddingTop="50dp"
         android:background="@color/menuBackground"/>
+
+    <RelativeLayout
+        android:id="@+id/searchBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="7dp"
+        android:focusableInTouchMode="true"
+        android:layout_below="@+id/appBarDelim"
+        android:background="@color/menuBackground">
+
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="20sp"
+            android:textColor="@color/textColor"
+            android:hint="Търси по име..."
+            android:textColorHint="#54000000"
+            android:gravity="center_vertical"
+            android:paddingStart="10dp"
+            android:background="@drawable/border_radius"/>
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/progressBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
-        android:background="#68000000"
+        android:background="#c9000000"
         android:gravity="center">
 
         <com.github.ybq.android.spinkit.SpinKitView xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -61,15 +85,15 @@
             android:layout_gravity="center"
             app:SpinKit_Color="#FFFFFF" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Зареждане на данни..."
-            android:layout_below="@+id/spinkit"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textColor="@color/textColor"
-            android:textSize="20sp"/>
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Зареждане на данни..."-->
+            <!--android:layout_below="@+id/spinkit"-->
+            <!--android:textStyle="bold"-->
+            <!--android:gravity="center"-->
+            <!--android:textColor="@color/textColor"-->
+            <!--android:textSize="20sp"/>-->
 
     </RelativeLayout>
 

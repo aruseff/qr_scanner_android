@@ -80,8 +80,8 @@ public class UsersListAdapter extends ArrayAdapter<User> implements Filterable {
             viewHolder = (ViewHolder) convertView.getTag();
             result = convertView;
         }
-        Animation animation = AnimationUtils.loadAnimation(mContext, (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
-        result.startAnimation(animation);
+//        Animation animation = AnimationUtils.loadAnimation(mContext, (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
+//        result.startAnimation(animation);
         lastPosition = position;
         viewHolder.nameTextView.setText(dataModel.getName());
         viewHolder.externalIdTextView.setText(String.valueOf(dataModel.getExternalId()));
@@ -108,7 +108,7 @@ public class UsersListAdapter extends ArrayAdapter<User> implements Filterable {
             return results;
         }
 
-        @SuppressWarnings("unchecked")
+        @SuppressWarnings("payment_unchecked")
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             filteredData = (ArrayList<User>) results.values;

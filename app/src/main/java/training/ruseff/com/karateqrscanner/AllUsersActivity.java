@@ -4,9 +4,14 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.AccelerateInterpolator;
+import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -23,6 +28,12 @@ public class AllUsersActivity extends AppCompatActivity {
     ListView usersListView;
     TextView messageTextView;
     RelativeLayout progressBar;
+    RelativeLayout searchBar;
+    EditText searchEditText;
+    ArrayAdapter<User> userAdapter;
+
+    private int lastVisiblePosition = 0;
+    private boolean scrollDown = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +47,54 @@ public class AllUsersActivity extends AppCompatActivity {
         usersListView = findViewById(R.id.usersListView);
         messageTextView = findViewById(R.id.messageTextView);
         progressBar = findViewById(R.id.progressBar);
+        searchBar = findViewById(R.id.searchBar);
+        searchEditText = findViewById(R.id.searchEditText);
+
+        usersListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if (lastVisiblePosition == firstVisibleItem) {
+                    return;
+                }
+                if (firstVisibleItem > lastVisiblePosition) {
+                    // scroll down
+                    if (!scrollDown) {
+                        if(firstVisibleItem != 0) {
+                            hideSearchBar();
+                            scrollDown = true;
+                        }
+                    }
+                } else {
+                    if (scrollDown) {
+                        showSearchBar();
+                        scrollDown = false;
+                    }
+                }
+                lastVisiblePosition = firstVisibleItem;
+            }
+        });
+
+        searchEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                userAdapter.getFilter().filter(s.toString());
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
     }
 
     private void showErrorMessage(String msg, boolean changeColor) {
         messageTextView.setText(msg);
-        if(changeColor) {
+        if (changeColor) {
             messageTextView.setTextColor(Color.RED);
         }
         usersListView.setVisibility(View.GONE);
@@ -48,14 +102,25 @@ public class AllUsersActivity extends AppCompatActivity {
     }
 
     private void showListView(ArrayList<User> users) {
-        if(users == null || users.isEmpty()) {
+        if (users == null || users.isEmpty()) {
             showErrorMessage("Няма намерени потребители", false);
         } else {
-            ArrayAdapter<User> activeUsersAdapter = new UsersListAdapter(users, AllUsersActivity.this);
-            usersListView.setAdapter(activeUsersAdapter);
+            userAdapter = new UsersListAdapter(users, AllUsersActivity.this);
+            usersListView.setAdapter(userAdapter);
             messageTextView.setVisibility(View.GONE);
             usersListView.setVisibility(View.VISIBLE);
         }
+    }
+
+    private void hideSearchBar() {
+        searchBar.animate().translationY(-(searchBar.getHeight()*2)).setInterpolator(new AccelerateInterpolator(2)).start();
+        usersListView.setPadding(0,0,0,0);
+    }
+
+    private void showSearchBar() {
+        searchBar.animate().translationY(0).setInterpolator(new AccelerateInterpolator(2)).start();
+        usersListView.setPadding(0,searchBar.getHeight(),0,0);
+
     }
 
     private void blockScreen() {
@@ -85,7 +150,7 @@ public class AllUsersActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             unblockScreen();
-            if(result.equals("ERROR")) {
+            if (result.equals("ERROR")) {
                 showErrorMessage("Възникна проблем. Моля опитайте отново", true);
             } else {
                 JsonConverter json = new JsonConverter();

@@ -2,12 +2,24 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_image"
-    android:gravity="center">
+    android:background="@drawable/background_image">
+
+    <TextView
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:text="QR Scanner"
+        android:gravity="center"
+        android:textColor="@color/textColor"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:background="#E0616161" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
         android:background="@color/menuBackground"
         android:gravity="center">
 
@@ -20,7 +32,7 @@
             android:padding="20dp"
             android:text="Регистрация на потребител"
             android:textColor="@color/textColor"
-            android:textSize="20sp"
+            android:textSize="23sp"
             android:textStyle="bold" />
 
         <View
@@ -28,8 +40,8 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/header"
-            android:layout_marginEnd="25dp"
             android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
             android:background="#2BFFFFFF" />
 
         <LinearLayout
@@ -37,8 +49,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/headerDelim"
-            android:layout_marginEnd="25dp"
             android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
             android:padding="15dp"
             android:weightSum="2">
 
@@ -47,8 +59,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical|start"
-                android:paddingEnd="20dp"
                 android:paddingStart="20dp"
+                android:paddingEnd="20dp"
                 android:text="Име"
                 android:textColor="@color/textColor"
                 android:textSize="18sp"
@@ -58,9 +70,9 @@
                 android:id="@+id/nameEditText"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:textColor="@color/textColor"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textColor="@color/textColor" />
 
         </LinearLayout>
 
@@ -69,8 +81,8 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/nameLayout"
-            android:layout_marginEnd="35dp"
             android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
             android:background="#2BFFFFFF" />
 
         <LinearLayout
@@ -78,8 +90,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/nameDelim"
-            android:layout_marginEnd="25dp"
             android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
             android:padding="20dp"
             android:weightSum="2">
 
@@ -88,8 +100,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical|start"
-                android:paddingEnd="20dp"
                 android:paddingStart="20dp"
+                android:paddingEnd="20dp"
                 android:text="ID"
                 android:textColor="@color/textColor"
                 android:textSize="18sp"
@@ -99,9 +111,10 @@
                 android:id="@+id/idEditText"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:textColor="@color/textColor"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="1" />
+                android:inputType="number"
+                android:layout_weight="1"
+                android:textColor="@color/textColor" />
 
         </LinearLayout>
 
@@ -110,30 +123,42 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/idLayout"
-            android:layout_marginEnd="50dp"
             android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
             android:background="#2BFFFFFF" />
+
+        <!--<Button-->
+        <!--android:id="@+id/registerButton"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/idDelim"-->
+        <!--android:layout_margin="20dp"-->
+        <!--android:text="Регистрация"-->
+        <!--android:textColor="@color/textColor"-->
+        <!--android:textSize="18sp"-->
+        <!--android:textStyle="bold" />-->
 
         <Button
             android:id="@+id/registerButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/idDelim"
+            android:layout_below="@+id/idDelim"
             android:layout_margin="20dp"
+            android:layout_weight="10"
+            android:background="#2E1B35"
             android:text="Регистрация"
-            android:textColor="@color/textColor"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textColor="@color/textColor" />
 
         <TextView
             android:id="@+id/messageTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_below="@+id/registerButton"
+            android:background="#e4e4e4"
+            android:gravity="center"
             android:textColor="#FF0000"
-            android:visibility="gone"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:visibility="gone"/>
 
     </RelativeLayout>
 
@@ -141,28 +166,28 @@
         android:id="@+id/progressBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
         android:background="#68000000"
-        android:gravity="center">
+        android:gravity="center"
+        android:visibility="gone">
 
         <com.github.ybq.android.spinkit.SpinKitView xmlns:app="http://schemas.android.com/apk/res-auto"
-            style="@style/SpinKitView.Large.Circle"
             android:id="@+id/spinkit"
+            style="@style/SpinKitView.Large.Circle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             app:SpinKit_Color="#FFFFFF" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Моля изчакайте..."
-            android:layout_below="@+id/spinkit"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textColor="@color/textColor"
-            android:textSize="20sp"/>
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/spinkit"-->
+            <!--android:gravity="center"-->
+            <!--android:text="Моля изчакайте..."-->
+            <!--android:textColor="@color/textColor"-->
+            <!--android:textSize="20sp"-->
+            <!--android:textStyle="bold" />-->
 
     </RelativeLayout>
 
