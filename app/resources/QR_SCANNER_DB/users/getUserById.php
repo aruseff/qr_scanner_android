@@ -1,0 +1,17 @@
+<?php
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: access");
+header("Access-Control-Allow-Methods: GET");
+header("Access-Control-Allow-Credentials: true");
+header('Content-Type: application/json');
+ 
+include_once '../config/database.php';
+include_once '../objects/user.php';
+
+$database = new Database();
+$db = $database->getConnection();
+$user = new User($db);
+$id = isset($_GET['id']) ? $_GET['id'] : die();
+$user->getUserById($id);
+print_r(json_encode($user));
+?>

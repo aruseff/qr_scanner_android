@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
-        android:text="QR Scanner"
+        android:text="@string/app_header_name"
         android:gravity="center"
         android:textColor="@color/textColor"
         android:textSize="20sp"
@@ -60,10 +60,11 @@
             android:layout_height="match_parent"
             android:textSize="20sp"
             android:textColor="@color/textColor"
-            android:hint="Търси по име..."
+            android:hint="@string/search_by_name"
             android:textColorHint="#54000000"
             android:gravity="center_vertical"
             android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:background="@drawable/border_radius"/>
 
     </RelativeLayout>

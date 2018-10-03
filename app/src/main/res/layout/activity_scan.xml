@@ -12,7 +12,7 @@
         android:layout_alignParentTop="true"
         android:background="#E0616161"
         android:gravity="center"
-        android:text="QR Scanner"
+        android:text="@string/app_header_name"
         android:textColor="@color/textColor"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -47,15 +47,15 @@
             android:layout_gravity="center"
             app:SpinKit_Color="#FFFFFF" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/progressBar"
-            android:gravity="center"
-            android:text="Извличане на информация за потребител"
-            android:textColor="@color/textColor"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/progressBar"-->
+            <!--android:gravity="center"-->
+            <!--android:text=""-->
+            <!--android:textColor="@color/textColor"-->
+            <!--android:textSize="20sp"-->
+            <!--android:textStyle="bold" />-->
 
     </RelativeLayout>
 

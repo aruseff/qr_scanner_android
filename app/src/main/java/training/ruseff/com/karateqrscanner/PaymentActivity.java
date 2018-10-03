@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -89,7 +88,7 @@ public class PaymentActivity extends AppCompatActivity {
                 if (datesToPay.length != 0) {
                     createConfirmDialog(datesToPay);
                 } else {
-                    warningMessageTextView.setText("Моле изберете месец за плащане");
+                    warningMessageTextView.setText(R.string.no_month_warning);
                     warningMessageTextView.setVisibility(View.VISIBLE);
                 }
             }
@@ -128,15 +127,6 @@ public class PaymentActivity extends AppCompatActivity {
             }
             cardMonths[i].getCheckBox().setChecked(false);
         }
-    }
-
-    private Set<Integer> extractPayedMonths(List<Date> payedDates) {
-        Set<Integer> payedMonths = new HashSet<>();
-        for (Date date : payedDates) {
-            int month = Utils.getMonthFromDate(date);
-            payedMonths.add(month);
-        }
-        return payedMonths;
     }
 
     private void deactivateMonth(int month) {
@@ -193,22 +183,30 @@ public class PaymentActivity extends AppCompatActivity {
 
     private void createConfirmDialog(final Date[] paymentDates) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppCompatAlertDialogStyle);
-        builder.setTitle("Потвърждаване за плащане");
-        builder.setMessage("Плащане за:\n" + Utils.datesToString(paymentDates));
-        builder.setPositiveButton("Да", new DialogInterface.OnClickListener() {
+        builder.setTitle(R.string.confirm_payment);
+        builder.setMessage(getResources().getString(R.string.pay_for) + "\n" + Utils.datesToString(paymentDates));
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 new MakePayment().execute(paymentDates);
                 dialogInterface.dismiss();
             }
         });
-        builder.setNegativeButton("Не", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
             }
         });
         builder.show();
+    }
+
+    private void makeToast(String msg, int textColor) {
+        Toast toast = Toast.makeText(PaymentActivity.this, msg, Toast.LENGTH_LONG);
+        TextView v = toast.getView().findViewById(android.R.id.message);
+        v.setTextColor(textColor);
+        v.setGravity(Gravity.CENTER);
+        toast.show();
     }
 
     private class GenerateModelByYearTask extends AsyncTask<Integer, Void, String> {
@@ -219,7 +217,7 @@ public class PaymentActivity extends AppCompatActivity {
         protected String doInBackground(Integer... param) {
             year = param[0];
             HttpCalls http = new HttpCalls();
-            return http.getAllPaymentsByUserIdAndYear(user.getExternalId(), year);
+            return http.getAllPaymentsByUserIdAndYear(user.getInternalId(), year);
         }
 
         @Override
@@ -248,37 +246,29 @@ public class PaymentActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Date... param) {
             HttpCalls http = new HttpCalls();
-            return http.makePayment(user.getExternalId(), param[0]).equals(HttpResponse.OK);
+            boolean success = true;
+            for (Date date : param) {
+                success = http.makePayment(user.getInternalId(), date).equals(HttpResponse.OK) && success;
+            }
+            return success;
         }
 
         @Override
         protected void onPostExecute(Boolean result) {
             unblockScreen();
-            if (result.booleanValue()) {
-                Toast toast = Toast.makeText(PaymentActivity.this, "Успешно заплащане!", Toast.LENGTH_LONG);
-                TextView v = toast.getView().findViewById(android.R.id.message);
-                v.setTextColor(Color.GREEN);
-                v.setGravity(Gravity.CENTER);
-                toast.show();
-                Intent mainActivity = new Intent(PaymentActivity.this, ScanActivity.class);
-                PaymentActivity.this.startActivity(mainActivity);
+            if (result) {
+                makeToast(getResources().getString(R.string.successful_payment), Color.GREEN);
+                Intent menuActivity = new Intent(PaymentActivity.this, MenuActivity.class);
+                PaymentActivity.this.startActivity(menuActivity);
                 finish();
             } else {
-                Toast toast = Toast.makeText(PaymentActivity.this, "Възникна грешка при заплащането! Моля, опитайте по-късно.", Toast.LENGTH_LONG);
-                TextView v = toast.getView().findViewById(android.R.id.message);
-                v.setTextColor(Color.RED);
-                v.setGravity(Gravity.CENTER);
-                toast.show();
+                makeToast(getResources().getString(R.string.error), Color.RED);
             }
         }
 
         @Override
         protected void onPreExecute() {
             blockScreen();
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... values) {
         }
     }
 }

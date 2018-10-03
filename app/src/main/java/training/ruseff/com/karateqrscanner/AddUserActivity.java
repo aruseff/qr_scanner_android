@@ -97,7 +97,9 @@ public class AddUserActivity extends AppCompatActivity {
         if (view == null) {
             view = new View(this);
         }
-        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        if(imm != null) {
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
     private class HttpAsync extends AsyncTask<String, Void, String> {
@@ -119,9 +121,9 @@ public class AddUserActivity extends AppCompatActivity {
             if (result.equals("OK")) {
                 nameEditText.setText("");
                 idEditText.setText("");
-                showSuccessMessage("Успешно добавен потребител");
+                showSuccessMessage(getResources().getString(R.string.add_user_msg));
             } else {
-                showErrorMessage("Възникна проблем. Моля опитайте отново");
+                showErrorMessage(getResources().getString(R.string.error));
             }
         }
     }

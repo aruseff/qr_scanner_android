@@ -2,18 +2,19 @@ package training.ruseff.com.karateqrscanner.http;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.logging.Logger;
 
 import okhttp3.MediaType;
-import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import training.ruseff.com.karateqrscanner.models.User;
+import okio.Buffer;
 import training.ruseff.com.karateqrscanner.utils.Utils;
 
 public class HttpCalls {
 
+    private Logger logger = Logger.getLogger(HttpCalls.class.getName());
     private final String BASE_URL = "https://karateqrscannerdb.000webhostapp.com";
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
@@ -100,6 +101,9 @@ public class HttpCalls {
                 .build();
         String result = HttpResponse.CLIENT_ERROR;
         try {
+            final Buffer buffer = new Buffer();
+            request.body().writeTo(buffer);
+            logger.info("makePayment() post request sent : " + request.url().toString() + " with body : " + buffer.readUtf8());
             Response response = client.newCall(request).execute();
             if (response != null && response.body() != null) {
                 result = response.body().string();
@@ -108,6 +112,7 @@ public class HttpCalls {
             e.printStackTrace();
             // nothing
         }
+        logger.info("makePayment() result : " + result);
         return result;
     }
 

@@ -102,7 +102,7 @@ public class ScanActivity extends AppCompatActivity implements QRCodeReaderView.
 
     private void getUserByUserInfo(String userInfo) {
         if (userInfo == null) {
-            callErrorPage(userInfo);
+            callErrorPage("");
         } else {
             try {
                 long id = Long.parseLong(userInfo.substring(userInfo.lastIndexOf(" ") + 1));

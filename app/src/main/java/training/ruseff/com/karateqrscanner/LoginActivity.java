@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
                 hideKeyboard();
                 String username = usernameEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
-                if(validateForm(username, password)) {
+                if (validateForm(username, password)) {
                     new LoginAsync().execute(username, password);
                 }
             }
@@ -56,13 +56,13 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean validateForm(String username, String password) {
         boolean toContinue = true;
-        if(Utils.isNullOrEmpty(username)) {
+        if (Utils.isNullOrEmpty(username)) {
             usernameEditText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.warning_icon, 0);
             toContinue = false;
         } else {
             usernameEditText.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
         }
-        if(Utils.isNullOrEmpty(password)) {
+        if (Utils.isNullOrEmpty(password)) {
             passwordEditText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.warning_icon, 0);
             toContinue = false;
         } else {
@@ -88,7 +88,9 @@ public class LoginActivity extends AppCompatActivity {
         if (view == null) {
             view = new View(this);
         }
-        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
     private class LoginAsync extends AsyncTask<String, Void, String> {
@@ -107,16 +109,14 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             unblockScreen();
-            if(result.equals("true")) {
+            if (result.equals("true")) {
                 usernameEditText.setText("");
                 passwordEditText.setText("");
                 Intent menuActivity = new Intent(LoginActivity.this, MenuActivity.class);
                 LoginActivity.this.startActivity(menuActivity);
             } else {
-                enter.setText("Неуспешен вход");
-                int colorFrom = Color.RED;
-                int colorTo = ((ColorDrawable)enter.getBackground()).getColor();
-                ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
+                enter.setText(R.string.unauthorized);
+                ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), Color.RED, ((ColorDrawable) enter.getBackground()).getColor());
                 colorAnimation.setDuration(2000);
                 colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
@@ -127,12 +127,11 @@ public class LoginActivity extends AppCompatActivity {
                 colorAnimation.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animation) {
-                        enter.setText("Влез");
+                        enter.setText(R.string.login_button_label);
                     }
                 });
                 colorAnimation.start();
             }
         }
     }
-
 }

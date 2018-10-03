@@ -103,7 +103,7 @@ public class AllUsersActivity extends AppCompatActivity {
 
     private void showListView(ArrayList<User> users) {
         if (users == null || users.isEmpty()) {
-            showErrorMessage("Няма намерени потребители", false);
+            showErrorMessage(getResources().getString(R.string.users_not_found_error), false);
         } else {
             userAdapter = new UsersListAdapter(users, AllUsersActivity.this);
             usersListView.setAdapter(userAdapter);
@@ -151,7 +151,7 @@ public class AllUsersActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             unblockScreen();
             if (result.equals("ERROR")) {
-                showErrorMessage("Възникна проблем. Моля опитайте отново", true);
+                showErrorMessage(getResources().getString(R.string.error), true);
             } else {
                 JsonConverter json = new JsonConverter();
                 ArrayList<User> users = json.fromStringToListOfUsers(result);

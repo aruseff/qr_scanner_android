@@ -28,7 +28,6 @@
             android:layout_below="@+id/borderTop"
             android:fontFamily="monospace"
             android:gravity="center"
-            android:text="Име Фамилия"
             android:textColor="@color/textColor"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -56,7 +55,6 @@
                 android:layout_weight="5"
                 android:fontFamily="monospace"
                 android:gravity="center"
-                android:text="2018"
                 android:textColor="@color/textColor"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -90,7 +88,7 @@
             android:drawableStart="@drawable/warning_icon"
             android:gravity="start|center_vertical"
             android:paddingStart="20dp"
-            android:text="Внимание..."
+            android:paddingEnd="20dp"
             android:textColor="#FF0011"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -104,7 +102,7 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="30dp"
             android:background="@color/appForeground"
-            android:text="Плати"
+            android:text="@string/pay_button_label"
             android:textColor="@color/textColor"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -137,16 +135,6 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             app:SpinKit_Color="#FFFFFF" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/progressBar"
-            android:gravity="center"
-            android:text="Зареждане на данни, моля изчакайте"
-            android:textColor="@color/textColor"
-            android:textSize="20sp"
-            android:textStyle="bold" />
 
     </RelativeLayout>
 
