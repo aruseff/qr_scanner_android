@@ -103,14 +103,13 @@ public class ScanActivity extends AppCompatActivity implements QRCodeReaderView.
     private void getUserByUserInfo(String userInfo) {
         if (userInfo == null) {
             callErrorPage("");
-        } else {
-            try {
-                long id = Long.parseLong(userInfo.substring(userInfo.lastIndexOf(" ") + 1));
-                String name = userInfo.substring(0, userInfo.lastIndexOf(" "));
-                new GetUserTask().execute(new User(0, name, id));
-            } catch (Exception e) {
-                callErrorPage(userInfo);
-            }
+            return;
+        }
+        try {
+            long id = Long.parseLong(userInfo);
+            new GetUserTask().execute(new User(0, "", id));
+        } catch (Exception e) {
+            callErrorPage(userInfo);
         }
     }
 
@@ -142,12 +141,12 @@ public class ScanActivity extends AppCompatActivity implements QRCodeReaderView.
         @Override
         protected String doInBackground(User... param) {
             HttpCalls http = new HttpCalls();
-            return http.getUserByIdAndName(param[0].getExternalId(), param[0].getName());
+            return http.getUserById(param[0].getExternalId());
         }
 
         @Override
         protected void onPostExecute(String result) {
-            if(result.equals(HttpResponse.CLIENT_ERROR) || result.equals(HttpResponse.USER_NOT_FOUND)) {
+            if (result.equals(HttpResponse.CLIENT_ERROR) || result.equals(HttpResponse.USER_NOT_FOUND)) {
                 callErrorPage("");
             } else {
                 JsonConverter json = new JsonConverter();

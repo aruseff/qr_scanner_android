@@ -56,10 +56,10 @@ public class HttpCalls {
         return result;
     }
 
-    public String getUserByIdAndName(long externalId, String name) {
+    public String getUserById(long externalId) {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url(BASE_URL + "/users/getUserByIdAndName.php?id=" + externalId + "&name=" + name)
+                .url(BASE_URL + "/users/getUserById.php?id=" + externalId)
                 .build();
         String result = HttpResponse.CLIENT_ERROR;
         try {
