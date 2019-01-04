@@ -163,7 +163,7 @@ public class PaymentActivity extends AppCompatActivity {
 
     private void checkForNullUser(User user) {
         if (!Utils.isUserValid(user)) {
-            Intent userNotFoundIntent = new Intent(PaymentActivity.this, UserNotFoundActivity.class);
+            Intent userNotFoundIntent = new Intent(PaymentActivity.this, ScanErrorPage.class);
             userNotFoundIntent.putExtra("userInfo", "");
             PaymentActivity.this.startActivity(userNotFoundIntent);
             finish();

@@ -48,5 +48,10 @@
     <string name="name">Име</string>
     <string name="id">ID</string>
     <string name="register_button_label">Регистрация</string>
+    <string name="qr_scan_label">Моля сканирайте QR кода на нова карта, за регистриране на трениращ</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_add_user_by_name">AddUserByNameActivity</string>
 
 </resources>

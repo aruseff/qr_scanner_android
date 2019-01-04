@@ -11,10 +11,6 @@ public class HttpUtils {
     public static boolean isConnected(){
         ConnectivityManager connMgr = (ConnectivityManager) MyApplication.getAppContext().getSystemService(Activity.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnected())
-            return true;
-        else
-            return false;
+        return networkInfo != null && networkInfo.isConnected();
     }
-
 }

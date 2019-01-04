@@ -28,7 +28,6 @@ public class ScanActivity extends AppCompatActivity implements QRCodeReaderView.
     private static final int MY_PERMISSION_REQUEST_CAMERA = 0;
     private boolean isQrCodeRead = false;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,20 +101,20 @@ public class ScanActivity extends AppCompatActivity implements QRCodeReaderView.
 
     private void getUserByUserInfo(String userInfo) {
         if (userInfo == null) {
-            callErrorPage("");
+            callErrorPage("Неправилен формат на QR кода");
             return;
         }
         try {
             long id = Long.parseLong(userInfo);
-            new GetUserTask().execute(new User(0, "", id));
+            new GetUserTask().execute(id);
         } catch (Exception e) {
-            callErrorPage(userInfo);
+            callErrorPage("Неправилен формат на QR кода");
         }
     }
 
-    private void callErrorPage(String userInfo) {
-        Intent userNotFoundIntent = new Intent(ScanActivity.this, UserNotFoundActivity.class);
-        userNotFoundIntent.putExtra("userInfo", userInfo);
+    private void callErrorPage(String message) {
+        Intent userNotFoundIntent = new Intent(ScanActivity.this, ScanErrorPage.class);
+        userNotFoundIntent.putExtra("message", message);
         ScanActivity.this.startActivity(userNotFoundIntent);
     }
 
@@ -136,18 +135,20 @@ public class ScanActivity extends AppCompatActivity implements QRCodeReaderView.
         findViewById(R.id.wholeScreenLayout).setVisibility(View.GONE);
     }
 
-    private class GetUserTask extends AsyncTask<User, Void, String> {
+    private class GetUserTask extends AsyncTask<Long, Void, String> {
+        long id;
 
         @Override
-        protected String doInBackground(User... param) {
+        protected String doInBackground(Long... param) {
+            id = param[0];
             HttpCalls http = new HttpCalls();
-            return http.getUserById(param[0].getExternalId());
+            return http.getUserById(param[0]);
         }
 
         @Override
         protected void onPostExecute(String result) {
             if (result.equals(HttpResponse.CLIENT_ERROR) || result.equals(HttpResponse.USER_NOT_FOUND)) {
-                callErrorPage("");
+                callErrorPage("Не е намерен трениращ с ID: " + id);
             } else {
                 JsonConverter json = new JsonConverter();
                 User user = json.fromStringToUser(result);

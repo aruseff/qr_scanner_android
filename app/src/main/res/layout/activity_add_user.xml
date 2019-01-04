@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_image">
@@ -9,179 +10,99 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
-        android:text="@string/app_header_name"
+        android:background="#E0616161"
         android:gravity="center"
+        android:text="@string/app_header_name"
         android:textColor="@color/textColor"
         android:textSize="20sp"
-        android:textStyle="bold"
-        android:background="#E0616161" />
+        android:textStyle="bold" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
-        android:background="@color/menuBackground"
-        android:gravity="center">
+        android:layout_below="@+id/appBar">
 
-        <TextView
-            android:id="@+id/header"
+        <com.dlazaro66.qrcodereaderview.QRCodeReaderView
+            android:id="@+id/qrdecoderview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:gravity="center"
-            android:padding="20dp"
-            android:text="@string/register_user_header"
-            android:textColor="@color/textColor"
-            android:textSize="23sp"
-            android:textStyle="bold" />
+            android:layout_height="match_parent" />
 
         <View
-            android:id="@+id/headerDelim"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/header"
-            android:layout_marginStart="25dp"
-            android:layout_marginEnd="25dp"
-            android:background="#2BFFFFFF" />
+            android:id="@+id/mainView"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/qr_code_border" />
 
-        <LinearLayout
-            android:id="@+id/nameLayout"
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/headerDelim"
-            android:layout_marginStart="25dp"
-            android:layout_marginEnd="25dp"
-            android:padding="15dp"
-            android:weightSum="2">
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottomView"
+            android:layout_below="@+id/topView"
+            android:layout_toStartOf="@+id/mainView"
+            android:background="#53000000" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottomView"
+            android:layout_below="@+id/topView"
+            android:layout_toEndOf="@+id/mainView"
+            android:background="#53000000" />
+
+        <RelativeLayout
+            android:id="@+id/topView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/mainView"
+            android:background="#53000000">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical|start"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:labelFor="@+id/nameEditText"
-                android:text="@string/name"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:textColor="@color/textColor"
+                android:padding="8dp"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textAlignment="center"
+                android:text="@string/qr_scan_label"/>
 
-            <EditText
-                android:id="@+id/nameEditText"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:inputType="text"
-                android:textColor="@color/textColor" />
+        </RelativeLayout>
 
-        </LinearLayout>
-
-        <View
-            android:id="@+id/nameDelim"
+        <RelativeLayout
+            android:id="@+id/bottomView"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/nameLayout"
-            android:layout_marginStart="35dp"
-            android:layout_marginEnd="35dp"
-            android:background="#2BFFFFFF" />
+            android:layout_height="match_parent"
+            android:layout_below="@+id/mainView"
+            android:background="#53000000">
 
-        <LinearLayout
-            android:id="@+id/idLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/nameDelim"
-            android:layout_marginStart="25dp"
-            android:layout_marginEnd="25dp"
-            android:padding="20dp"
-            android:weightSum="2">
+            <ImageView
+                android:id="@+id/editButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/add_user_edit_icon" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical|start"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:text="@string/id"
-                android:labelFor="@+id/idEditText"
-                android:textColor="@color/textColor"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/idEditText"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:inputType="number"
-                android:layout_weight="1"
-                android:textColor="@color/textColor" />
-
-        </LinearLayout>
-
-        <View
-            android:id="@+id/idDelim"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/idLayout"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
-            android:background="#2BFFFFFF" />
-
-        <Button
-            android:id="@+id/registerButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/idDelim"
-            android:layout_margin="20dp"
-            android:background="#2E1B35"
-            android:text="@string/register_button_label"
-            android:textColor="@color/textColor" />
-
-        <TextView
-            android:id="@+id/messageTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/registerButton"
-            android:background="#44ffffff"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:padding="7dp"
-            android:gravity="center"
-            android:textColor="#FF0000"
-            android:textSize="18sp"
-            android:visibility="gone"/>
+        </RelativeLayout>
 
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/progressBar"
+        android:id="@+id/wholeScreenLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#68000000"
+        android:background="#B7000000"
         android:gravity="center"
         android:visibility="gone">
 
         <com.github.ybq.android.spinkit.SpinKitView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/spinkit"
+            android:id="@+id/progressBar"
             style="@style/SpinKitView.Large.Circle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             app:SpinKit_Color="#FFFFFF" />
-
-        <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_below="@+id/spinkit"-->
-            <!--android:gravity="center"-->
-            <!--android:text="Моля изчакайте..."-->
-            <!--android:textColor="@color/textColor"-->
-            <!--android:textSize="20sp"-->
-            <!--android:textStyle="bold" />-->
 
     </RelativeLayout>
 

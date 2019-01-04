@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -14,6 +15,9 @@ public class MenuActivity extends AppCompatActivity {
     Button allUsersButton;
     Button searchUserButton;
     Button addUserButton;
+
+    private int backPressCount = 0;
+    private long backPressTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,5 +67,21 @@ public class MenuActivity extends AppCompatActivity {
                 MenuActivity.this.startActivity(addUserActivity);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(backPressCount == 0) {
+            backPressCount++;
+            backPressTime = System.currentTimeMillis();
+            Toast.makeText(this, "Press 'Back Button' again to exit the application!", Toast.LENGTH_SHORT).show();
+        } else {
+            if(System.currentTimeMillis() - backPressTime > 3000) {
+                backPressCount = 0;
+                backPressTime = 0;
+            } else {
+                this.finishAffinity();
+            }
+        }
     }
 }

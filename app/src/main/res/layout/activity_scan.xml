@@ -17,18 +17,55 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <com.dlazaro66.qrcodereaderview.QRCodeReaderView
-        android:id="@+id/qrdecoderview"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/appBar" />
+        android:layout_below="@+id/appBar">
 
-    <View
-        android:id="@+id/scanButton"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_alignParentBottom="true"
-        android:background="#48000000" />
+        <com.dlazaro66.qrcodereaderview.QRCodeReaderView
+            android:id="@+id/qrdecoderview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <View
+            android:id="@+id/mainView"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:background="@drawable/qr_code_border"
+            android:layout_centerInParent="true"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toStartOf="@+id/mainView"
+            android:layout_below="@+id/topView"
+            android:layout_above="@+id/bottomView"
+            android:background="#53000000"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@+id/mainView"
+            android:layout_below="@+id/topView"
+            android:layout_above="@+id/bottomView"
+            android:background="#53000000"/>
+
+        <View
+            android:id="@+id/topView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/mainView"
+            android:background="#53000000"/>
+
+        <View
+            android:id="@+id/bottomView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/mainView"
+            android:background="#53000000">
+        </View>
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/wholeScreenLayout"
@@ -46,16 +83,6 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             app:SpinKit_Color="#FFFFFF" />
-
-        <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_below="@+id/progressBar"-->
-            <!--android:gravity="center"-->
-            <!--android:text=""-->
-            <!--android:textColor="@color/textColor"-->
-            <!--android:textSize="20sp"-->
-            <!--android:textStyle="bold" />-->
 
     </RelativeLayout>
 

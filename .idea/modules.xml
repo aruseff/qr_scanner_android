@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/KarateQRScanner.iml" filepath="$PROJECT_DIR$/KarateQRScanner.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/qr_scanner_android.iml" filepath="$PROJECT_DIR$/qr_scanner_android.iml" />
     </modules>
