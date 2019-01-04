@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image">
+
+    <TextView
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:background="#E0616161"
+        android:gravity="center"
+        android:text="@string/app_header_name"
+        android:textColor="@color/textColor"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <com.dlazaro66.qrcodereaderview.QRCodeReaderView
+        android:id="@+id/qrdecoderview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/appBar" />
+
+    <View
+        android:id="@+id/scanButton"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:background="#48000000" />
+
+    <RelativeLayout
+        android:id="@+id/wholeScreenLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B7000000"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <com.github.ybq.android.spinkit.SpinKitView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/progressBar"
+            style="@style/SpinKitView.Large.Circle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            app:SpinKit_Color="#FFFFFF" />
+
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/progressBar"-->
+            <!--android:gravity="center"-->
+            <!--android:text=""-->
+            <!--android:textColor="@color/textColor"-->
+            <!--android:textSize="20sp"-->
+            <!--android:textStyle="bold" />-->
+
+    </RelativeLayout>
+
+</RelativeLayout>

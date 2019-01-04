@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/menuBackground"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="60dp"
+            android:fontFamily="cursive"
+            android:gravity="center"
+            android:padding="30dp"
+            android:text="@string/app_header_name"
+            android:textColor="@color/textColor"
+            android:textSize="35sp" />
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/header"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/username_label"
+            android:inputType="text"
+            android:padding="7dp"
+            android:textColor="@color/textColor"
+            android:textColorHint="@color/textColor" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/username"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:hint="@string/password_label"
+            android:inputType="textPassword"
+            android:padding="7dp"
+            android:textColor="@color/textColor"
+            android:textColorHint="@color/textColor" />
+
+            <Button
+                android:id="@+id/enter"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/password"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="#2E1B35"
+                android:text="@string/login_button_label"
+                android:textColor="@color/textColor" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#68000000"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <com.github.ybq.android.spinkit.SpinKitView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/spinkit"
+            style="@style/SpinKitView.Large.Circle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            app:SpinKit_Color="#FFFFFF" />
+
+        <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Зареждане на данни..."-->
+        <!--android:layout_below="@+id/spinkit"-->
+        <!--android:textStyle="bold"-->
+        <!--android:gravity="center"-->
+        <!--android:textColor="@color/textColor"-->
+        <!--android:textSize="20sp"/>-->
+
+    </RelativeLayout>
+
+</RelativeLayout>

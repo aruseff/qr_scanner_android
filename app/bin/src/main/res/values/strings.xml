@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">Karate QR Reader</string>
+    <string name="title_activity_login">Ауторизация</string>
+
+    <!-- commons -->
+    <string name="app_header_name">QR Scanner</string>
+    <string name="yes">Да</string>
+    <string name="no">Не</string>
+    <string name="error">Възникна проблем. Моля опитайте отново</string>
+
+    <!-- login -->
+    <string name="username_label">Потребителско име</string>
+    <string name="password_label">Парола</string>
+    <string name="login_button_label">Влез</string>
+    <string name="unauthorized">Неуспешен вход</string>
+
+    <!-- scan -->
+    <string name="fetch_user_load_msg">Извличане на информация за потребител</string>
+
+    <!-- payment -->
+    <string name="no_month_warning">Моля изберете месец за плащане</string>
+    <string name="pay_button_label">Плати</string>
+    <string name="successful_payment">Успешно заплащане!</string>
+    <string name="confirm_payment">Потвърждаване за плащане</string>
+    <string name="pay_for">Плащане за:</string>
+
+    <!-- payment card -->
+    <string name="january_label">Ян.</string>
+    <string name="february_label">Февр</string>
+    <string name="march_label">Март</string>
+    <string name="april_label">Апр</string>
+    <string name="may_label">Май</string>
+    <string name="august_label">Авг</string>
+    <string name="october_label">Окт</string>
+    <string name="december_label">Дек</string>
+    <string name="september_label">Септ</string>
+    <string name="july_label">Юли</string>
+    <string name="june_label">Юни</string>
+    <string name="november_label">Ноем</string>
+
+    <!-- all users -->
+    <string name="users_not_found_error">Няма намерени потребители</string>
+    <string name="search_by_name">Търси по име...</string>
+
+    <!-- add user -->
+    <string name="add_user_msg">Успешно добавен потребител</string>
+    <string name="register_user_header">Регистрация на потребител</string>
+    <string name="name">Име</string>
+    <string name="id">ID</string>
+    <string name="register_button_label">Регистрация</string>
+
+</resources>

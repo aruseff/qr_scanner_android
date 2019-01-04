@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_image">
+
+        <TextView
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:background="#E0616161"
+            android:gravity="center"
+            android:text="QR Scanner"
+            android:textColor="@color/textColor"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/appBarDelim"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/appBar"
+            android:background="#CA2B2026" />
+
+        <LinearLayout
+            android:id="@+id/row1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/appBarDelim"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <training.ruseff.com.karateqrscanner.views.SquareButton
+                android:id="@+id/scanButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/menuBackground"
+                android:foreground="@drawable/menu_qr_code_icon"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:paddingTop="100dp"
+                android:text="Сканирай QR код"
+                android:textColor="@color/menuTextColor"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#CA2B2026" />
+
+            <training.ruseff.com.karateqrscanner.views.SquareButton
+                android:id="@+id/allUsersButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/menuBackground"
+                android:foreground="@drawable/menu_users_icon"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:paddingTop="100dp"
+                android:text="Потребители"
+                android:textColor="@color/menuTextColor"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/delim1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/row1"
+            android:background="#CA2B2026" />
+
+        <LinearLayout
+            android:id="@+id/row2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/delim1"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <training.ruseff.com.karateqrscanner.views.SquareButton
+                android:id="@+id/addUserButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/menuBackground"
+                android:foreground="@drawable/menu_add_user_icon"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:paddingTop="100dp"
+                android:text="Добави потребител"
+                android:textColor="@color/menuTextColor"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#CA2B2026" />
+
+            <training.ruseff.com.karateqrscanner.views.SquareButton
+                android:id="@+id/searchButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/menuBackground"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:paddingTop="100dp"
+                android:textColor="@color/menuTextColor"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/delim2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/row2"
+            android:background="#CA2B2026" />
+
+        <LinearLayout
+            android:id="@+id/row3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/delim2"
+            android:background="@color/menuBackground"
+            android:orientation="horizontal"
+            android:weightSum="2" />
+
+    </RelativeLayout>
+</ScrollView>
